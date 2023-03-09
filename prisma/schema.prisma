@@ -7,16 +7,40 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Customer{
-  custNo Int @id @default(autoincrement())
-  custName String
-  custSurname String
-  custEmail String @unique
-  custMobileNumber String
+model User {
+  uid String @id
 }
 
-model Payment{
-  paymentRefNo Int @id @default(autoincrement())
-  paymentAmount String
-  custNo Int
+model Timeblock {
+  id        Int       @id @default(autoincrement())
+  uid       String?
+  name      String
+  type      String
+  mode      String
+  s         DateTime?
+  duration  Json
+  e         DateTime?
+  project   Project?  @relation(fields: [projectId], references: [id])
+  projectId Int?
+  reminder  DateTime?
+  status    String
+}
+
+model Project {
+  id         Int         @id @default(autoincrement())
+  uid        String?
+  name       String
+  timeblocks Timeblock[]
+  duration   Json?
+  venture    Venture?    @relation(fields: [ventureId], references: [id])
+  ventureId  Int?
+  due        DateTime?
+  status     String?
+}
+
+model Venture {
+  id       Int       @id @default(autoincrement())
+  uid      String?
+  name     String
+  projects Project[]
 }
