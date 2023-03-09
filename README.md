@@ -1,5 +1,7 @@
 # Genesis Backend
 
+## Repository init steps.
+
 ```
 npm install
 ```
@@ -7,3 +9,4 @@ npm install
 ```
 npm run dev
 ```
+
