@@ -1,10 +1,10 @@
 
 import express, { Request, Response } from "express";
 import { Prisma, PrismaClient } from "@prisma/client";
-import projectRouter from "./Routers/projectRouter";
-import timeblockRouter from "./Routers/timeblockRouter";
-import userRouter from "./Routers/userRouter";
-import ventureRouter from "./Routers/ventureRouter";
+import projectRouter from "./routers/projectRouter";
+import timeblockRouter from "./routers/timeblockRouter";
+import userRouter from "./routers/userRouter";
+import ventureRouter from "./routers/ventureRouter";
 export const prisma = new PrismaClient();
 const cors  = require("cors");
 
