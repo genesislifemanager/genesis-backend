@@ -13,34 +13,36 @@ model User {
 
 model Timeblock {
   id        Int       @id @default(autoincrement())
-  uid       String?
+  uid       String
   name      String
   type      String
   mode      String
   s         DateTime?
   duration  Json
   e         DateTime?
-  project   Project?  @relation(fields: [projectId], references: [id])
+  project   Project?  @relation(fields: [projectId,uid], references: [id,uid])
   projectId Int?
   reminder  DateTime?
   status    String
 }
 
 model Project {
-  id         Int         @id @default(autoincrement())
-  uid        String?
+  id         Int         @default(autoincrement())
+  uid        String
   name       String
   timeblocks Timeblock[]
   duration   Json?
-  venture    Venture?    @relation(fields: [ventureId], references: [id])
+  venture    Venture?    @relation(fields: [ventureId,uid], references: [id,uid])
   ventureId  Int?
   due        DateTime?
   status     String?
+  @@id([id,uid])
 }
 
 model Venture {
-  id       Int       @id @default(autoincrement())
-  uid      String?
+  id       Int       @default(autoincrement())
+  uid      String
   name     String
   projects Project[]
+  @@id([id,uid])
 }
