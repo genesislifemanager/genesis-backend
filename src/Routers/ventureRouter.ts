@@ -3,7 +3,7 @@ import { getAllVentures, createVenture, getVentureById, updateVentureById, delet
 
 const ventureRouter = express.Router();
 
-ventureRouter.route('/').get(getAllVentures).post(createVenture);
-ventureRouter.route('/').get(getVentureById).put(updateVentureById).delete(deleteVentureById);
+ventureRouter.route('/:user').get(getAllVentures).post(createVenture);
+ventureRouter.route('/:user/:id').get(getVentureById).put(updateVentureById).delete(deleteVentureById);
 
 export default ventureRouter;
