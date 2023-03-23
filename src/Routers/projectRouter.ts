@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllProjects,createProject,getProjectById, updateProjectById,deleteProjectById } from "../Controllers/projectController";
+import { getAllProjects,createProject,getProjectById, updateProjectById,deleteProjectById } from "../controllers/projectController";
 
 const projectRouter = express.Router();
 
