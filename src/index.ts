@@ -22,7 +22,7 @@ app.use("/api/ventures", ventureRouter);
 
 const port = process.env.PORT || 5174
 
-const server = app.listen(5174, () =>
+const server = app.listen(port, () =>
   console.log(`
-🚀 Server ready at: http://localhost:5174`)
+🚀 Server ready at: http://localhost:${port}`)
 );

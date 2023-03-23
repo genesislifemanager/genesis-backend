@@ -3,8 +3,8 @@ import { getAllProjects,createProject,getProjectById, updateProjectById,deletePr
 
 const projectRouter = express.Router();
 
-projectRouter.route('/').get(getAllProjects).post(createProject);
-projectRouter.route('/:id').get(getProjectById).put(updateProjectById).delete(deleteProjectById);;
+projectRouter.route('/:user').get(getAllProjects).post(createProject);
+projectRouter.route('/:user/:id').get(getProjectById).put(updateProjectById).delete(deleteProjectById);;
 
 
 export default projectRouter;
