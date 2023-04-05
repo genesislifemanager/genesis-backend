@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { prisma } from "../index";
 import dayjs from "dayjs";
 
+//* Controller function to retrieve all projects for a given user 
 export const getAllProjects = async (req: Request, res: Response) => {
   const { user } = req.params;
   
@@ -21,6 +22,7 @@ export const getAllProjects = async (req: Request, res: Response) => {
   });
 };
 
+//* Controller function to create a new project resource for a given user 
 export const createProject = async (req: Request, res: Response) => {
   const { user } = req.params;
   const { id, name, status, due, duration,ventureId } = req.body;
@@ -61,6 +63,7 @@ export const createProject = async (req: Request, res: Response) => {
  }
 };
 
+//* Controller function to retrieve a given a project when the id is given for a given user 
 export const getProjectById = async (req: Request, res: Response) => {
   const { user,id } = req.params;
 
@@ -77,6 +80,7 @@ export const getProjectById = async (req: Request, res: Response) => {
   });
 };
 
+//* Controller function to update a project by id for a given user 
 export const updateProjectById = async (req: Request, res: Response) => {
   const { user, id } = req.params;
   const { name, status, due, duration,ventureId } = req.body;
@@ -100,6 +104,7 @@ export const updateProjectById = async (req: Request, res: Response) => {
   });
 };
 
+//* Controller function to delete a project by id for a given user 
 export const deleteProjectById = async (req: Request, res: Response) => {
   const { user,id } = req.params;
 

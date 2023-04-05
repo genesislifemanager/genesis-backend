@@ -10,8 +10,21 @@ const cors  = require("cors");
 
 const app = express();
 
+// allow requests from a specific origin
+const allowedOrigins = ['http://localhost:5173','https://genesis-frontend-dev.vercel.app/'];
+
+const corsOptions = {
+  origin: function (origin:any, callback:any) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
+
 //! Global Midlleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 //! Mount Routers

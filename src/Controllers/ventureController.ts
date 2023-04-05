@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { prisma } from "../index";
 import dayjs from "dayjs";
 
+//* Controller function to retrieve all projects for a given user 
 export const getAllVentures = async (req: Request, res: Response) => {
     const { user } = req.params;
 
@@ -25,6 +26,7 @@ export const getAllVentures = async (req: Request, res: Response) => {
     });
 };
 
+//* Controller function to create a new venture  for a given user 
 export const createVenture = async (req: Request, res: Response) => {
     const { user } = req.params;
     const { id, name } = req.body;
@@ -57,6 +59,7 @@ export const createVenture = async (req: Request, res: Response) => {
     }
 };
 
+//* Controller function to retrieve a given venture when the id is given for a given user 
 export const getVentureById = async (req: Request, res: Response) => {
     const { user, id } = req.params;
 
@@ -81,6 +84,8 @@ export const getVentureById = async (req: Request, res: Response) => {
     });
 };
 
+
+//* Controller function to update a venture by id for a given user 
 export const updateVentureById = async (req: Request, res: Response) => {
     const { user, id } = req.params;
     const { name } = req.body;
@@ -100,6 +105,7 @@ export const updateVentureById = async (req: Request, res: Response) => {
     });
 };
 
+//* Controller function to delete a venture by id for a given user 
 export const deleteVentureById = async (req: Request, res: Response) => {
     const { user,id } = req.params;
 

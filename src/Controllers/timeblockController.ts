@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { prisma } from "../index";
 import dayjs from "dayjs";
 
+//* Controller function to retrieve all timeblocks for a given user 
 export const getAllTimeBlocks = async (req: Request, res: Response) => {
   const {user} = req.params;
   
@@ -17,6 +18,7 @@ export const getAllTimeBlocks = async (req: Request, res: Response) => {
   });
 };
 
+//* Controller function to create a new timeblock for a specific user based on a request from the front-end
 export const createTimeblock = async (req: Request, res: Response) => {
   const {user} = req.params;
   const { name, type, mode, s, duration, projectId, reminder } = req.body;
@@ -45,6 +47,7 @@ export const createTimeblock = async (req: Request, res: Response) => {
   });
 };
 
+//* Controller function to retrieve a timeblock for a user based on its id
 export const getTimeblockById = async (req: Request, res: Response) => {
   const { user,id } = req.params;
   
@@ -64,6 +67,7 @@ export const getTimeblockById = async (req: Request, res: Response) => {
   });
 };
 
+//* Controller function to update a timeblock for a user based on its id
 export const updateTimeblockById = async (req: Request, res: Response) => {
   const { user,id } = req.params;
 
@@ -98,6 +102,7 @@ export const updateTimeblockById = async (req: Request, res: Response) => {
   });
 };
 
+//* Controller function to delete a timeblock for a user based on its id
 export const deleteTimeblockById = async (req: Request, res: Response) => {
   const { user, id } = req.params;
   
@@ -117,24 +122,27 @@ export const deleteTimeblockById = async (req: Request, res: Response) => {
   });
 };
 
+//* Controller function to retreive timeblock for a user pertaining to a specific date 
 export const getTimeBlocksByDate = async (req: Request, res: Response) => {
   const { user,date } = req.params;
   console.log(req.params);  
   
   const {status} = req.query as {status:string};
 
+  //* remove the time values from date object
   const selectedDate = dayjs(JSON.parse(date))
     .hour(0)
     .minute(0)
     .second(0)
     .millisecond(0);
   
+  //* get the next date 
   const nextDate  = selectedDate.add(1,'day');
   
   const timeblocksForDate = await prisma.timeblock.findMany({
     where: {
       s: {
-        lt: nextDate.toDate(),
+        lt: nextDate.toDate(), //* find timeblocks in the duration within the day
         gt: selectedDate.toDate(),
       },
       status: status,

@@ -3,7 +3,7 @@ import { getAllTimeBlocks,createTimeblock,getTimeblockById,updateTimeblockById,d
     
 const timeblockRouter = express.Router();
 
-
+//* Define routes for the timeblocks resource
 timeblockRouter.route('/:user').get(getAllTimeBlocks).post(createTimeblock);
 timeblockRouter.route('/:user/:id').get(getTimeblockById).put(updateTimeblockById).delete(deleteTimeblockById);
 timeblockRouter.route('/:user/date/:date').get(getTimeBlocksByDate);
