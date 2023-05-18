@@ -11,7 +11,7 @@ const cors  = require("cors");
 const app = express();
 
 // allow requests from a specific origin
-const allowedOrigins = ['http://localhost:5173','https://genesis-frontend-dev.vercel.app','https://genesis-frontend-sigma.vercel.app'];
+const allowedOrigins = ['http://localhost:5173','https://genesisoftware.vercel.app/','https://genesis-frontend-sigma.vercel.app'];
 
 const corsOptions = {
   origin: function (origin:any, callback:any) {
